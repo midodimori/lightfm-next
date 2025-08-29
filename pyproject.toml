@@ -46,7 +46,8 @@ dev = [
     "setuptools>=64",
     "wheel",
     "build",
-    "twine"
+    "twine",
+    "bump2version"
 ]
 lint = [
     "flake8",

@@ -37,6 +37,30 @@ clean:
 build-dist: clean
 	uv run python -m build
 
+# Version management
+.PHONY: version-patch
+version-patch:
+	uv run bump2version patch
+
+.PHONY: version-minor
+version-minor:
+	uv run bump2version minor
+
+.PHONY: version-major
+version-major:
+	uv run bump2version major
+
+.PHONY: release
+release: test-all build-dist
+	@echo "🚀 Ready for release!"
+	@echo "📦 Built packages:"
+	@ls -la dist/
+	@echo ""
+	@echo "Next steps:"
+	@echo "1. Push to GitHub: git push origin master --tags"
+	@echo "2. Create GitHub release from the tag"
+	@echo "3. PyPI publication will happen automatically"
+
 # Original documentation commands
 .PHONY: examples
 examples:

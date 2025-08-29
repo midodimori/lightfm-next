@@ -43,8 +43,6 @@ jobs:
   publish:
     needs: build
     runs-on: ubuntu-latest
-    environment:
-      name: ${{ github.event.inputs.test_pypi == 'true' && 'testpypi' || 'pypi' }}
     permissions:
       id-token: write
     steps:
