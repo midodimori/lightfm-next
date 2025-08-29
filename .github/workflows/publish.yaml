@@ -70,10 +70,13 @@ jobs:
           find artifacts -name "*.tar.gz" -exec cp {} dist/ \;
           ls -la dist/
           
+      - name: Install UV
+        uses: astral-sh/setup-uv@v3
+        
       - name: Check packages
         run: |
-          pip install twine
-          twine check dist/*
+          uv tool install twine
+          uv tool run twine check dist/*
           
       - name: Upload combined artifacts
         uses: actions/upload-artifact@v4
