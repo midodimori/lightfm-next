@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.8"
 authors = [
     {name = "Lyst Ltd (Maciej Kula)", email = "data@ly.st"},
-    {name = "Mirodimori (Forker)"}
+    {name = "midodimori (Forker)"}
 ]
 license = {text = "Apache-2.0"}
 classifiers = [
@@ -31,9 +31,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/mirodimori/lightfm-next"
-Repository = "https://github.com/mirodimori/lightfm-next"
-"Bug Tracker" = "https://github.com/mirodimori/lightfm-next/issues"
+Homepage = "https://github.com/midodimori/lightfm-next"
+Repository = "https://github.com/midodimori/lightfm-next"
+"Bug Tracker" = "https://github.com/midodimori/lightfm-next/issues"
 "Original Project" = "https://github.com/lyst/lightfm"
 "Original Documentation" = "http://lyst.github.io/lightfm/docs/home.html"
 "Original Issues" = "https://github.com/lyst/lightfm/issues"
