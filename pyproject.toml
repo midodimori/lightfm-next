@@ -12,7 +12,7 @@ authors = [
     {name = "Lyst Ltd (Maciej Kula)", email = "data@ly.st"},
     {name = "Mirodimori (Forker)"}
 ]
-license = "Apache-2.0"
+license = {text = "Apache-2.0"}
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
