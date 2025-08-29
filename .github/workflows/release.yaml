@@ -87,3 +87,14 @@ jobs:
             - Supports Python 3.12+ (main improvement over original)
           draft: false
           prerelease: false
+          
+      - name: Trigger PyPI Publication
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'publish.yaml',
+              ref: 'master'
+            })

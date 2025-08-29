@@ -19,6 +19,9 @@ jobs:
       - name: Install UV
         uses: astral-sh/setup-uv@v3
         
+      - name: Sync dependencies
+        run: uv sync --extra dev
+        
       - name: Build source distribution
         run: uv run python -m build --sdist
         
