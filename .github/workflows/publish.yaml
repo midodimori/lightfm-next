@@ -46,6 +46,7 @@ jobs:
           CIBW_SKIP: "*-musllinux* pp*"
           CIBW_ARCHS_MACOS: "x86_64 arm64"
           CIBW_ARCHS_LINUX: "x86_64"
+          CIBW_DEPENDENCY_VERSIONS: "latest"
           
       - name: Upload wheels
         uses: actions/upload-artifact@v4
