@@ -1,15 +1,16 @@
-# LightFM
+# LightFM Next
 
 ![LightFM logo](lightfm.png)
 
+**A Python 3.12+ compatible fork of the original [LightFM](https://github.com/lyst/lightfm) recommendation library.**
+
 | Build status | |
 |---|---|
-| Linux |[![Circle CI](https://circleci.com/gh/lyst/lightfm.svg?style=svg)](https://circleci.com/gh/lyst/lightfm)|
-| OSX (OpenMP disabled)|[![Travis CI](https://travis-ci.org/lyst/lightfm.svg?branch=master)](https://travis-ci.org/lyst/lightfm)|
-| Windows (OpenMP disabled) |[![Appveyor](https://ci.appveyor.com/api/projects/status/6cqpqb6969i1h4p7/branch/master?svg=true)](https://ci.appveyor.com/project/maciejkula/lightfm/branch/master)|
+| Linux & macOS (3.8-3.12) |[![GitHub Actions](https://github.com/midodimori/lightfm-next/actions/workflows/test.yaml/badge.svg)](https://github.com/midodimori/lightfm-next/actions/workflows/test.yaml)|
 
-[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/lightfm-rec/Lobby) [![PyPI](https://img.shields.io/pypi/v/lightfm.svg)](https://pypi.python.org/pypi/lightfm/)
-[![Anaconda-Server Badge](https://anaconda.org/conda-forge/lightfm/badges/version.svg)](https://anaconda.org/conda-forge/lightfm)
+[![PyPI](https://img.shields.io/pypi/v/lightfm-next.svg)](https://pypi.org/project/lightfm-next/)
+
+> **Note**: This is a community-maintained fork that provides Python 3.12+ compatibility by fixing Cython 3.0+ build issues. All credit goes to the original [LightFM authors](https://github.com/lyst/lightfm). If you're using Python < 3.12, consider using the [original LightFM](https://github.com/lyst/lightfm) package.
 
 LightFM is a Python implementation of a number of popular recommendation algorithms for both implicit and explicit feedback, including efficient implementation of BPR and WARP ranking losses. It's easy to use, fast (via multithreaded model estimation), and produces high quality results.
 
@@ -20,13 +21,38 @@ For more details, see the [Documentation](http://lyst.github.io/lightfm/docs/hom
 Need help? Contact me via [email](mailto:lightfm@zoho.com), [Twitter](https://twitter.com/Maciej_Kula), or [Gitter](https://gitter.im/lightfm-rec/Lobby).
 
 ## Installation
-Install from `pip`:
+
+### For Python 3.12+
+Install lightfm-next from PyPI:
+```bash
+pip install lightfm-next
 ```
+
+> **Note**: Windows support is not available yet. Use Linux or macOS.
+
+### For Python < 3.12
+Use the original LightFM package:
+```bash
 pip install lightfm
 ```
 or Conda:
-```
+```bash
 conda install -c conda-forge lightfm
+```
+
+## Migration from original LightFM
+
+lightfm-next is a **drop-in replacement** for the original LightFM. Simply replace your installation:
+
+```bash
+# Replace this
+pip uninstall lightfm
+pip install lightfm-next
+```
+
+**No code changes required** - all imports and APIs remain identical:
+```python
+from lightfm import LightFM  # Works exactly the same
 ```
 
 ## Quickstart
@@ -77,15 +103,16 @@ Please cite LightFM if it helps your research. You can use the following BibTeX 
 ## Development
 Pull requests are welcome. To install for development:
 
-1. Clone the repository: `git clone git@github.com:lyst/lightfm.git`
-2. Setup a virtual environment: `cd lightfm && python3 -m venv venv && source ./venv/bin/activate`
-3. Install it for development using pip: `pip install -e . && pip install -r test-requirements.txt`
-4. You can run tests by running `./venv/bin/py.test tests`.
-5. LightFM uses [black](https://github.com/ambv/black) to enforce code formatting and flake8 for linting, see `lint-requirements.txt`.
-6. [Optional]: You can install pre-commit to locally enfore formatting and linting. Install with:
-    ```bash
-    pip install pre-commit
-    pre-commit install
-    ```
+1. Clone the repository: `git clone https://github.com/midodimori/lightfm-next.git`
+2. Install UV: `curl -LsSf https://astral.sh/uv/install.sh | sh`
+3. Install dependencies: `cd lightfm-next && uv sync --extra dev --extra lint`
+4. Run all tests and linting: `make test-all`
 
-When making changes to the `.pyx` extension files, you'll need to run `python setup.py cythonize` in order to produce the extension `.c` files before running `pip install -e .`.
+Available make commands:
+- `make install` - Install dependencies and build extensions
+- `make lint` - Run flake8 linting
+- `make test` - Run pytest
+- `make test-basic` - Run basic functionality test
+- `make test-all` - Run complete test suite (same as CI)
+
+When making changes to `.pyx` extension files, run `uv run python setup.py build_ext --inplace` to rebuild extensions.
