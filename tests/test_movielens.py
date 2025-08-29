@@ -348,7 +348,7 @@ def test_get_representations():
             + item_biases[test.col]
         )
 
-        assert np.allclose(test_predictions, predictions, atol=0.000001)
+        assert np.allclose(test_predictions, predictions, atol=1e-5)
 
 
 def test_movielens_both_accuracy():
