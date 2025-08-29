@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=64", "wheel", "Cython>=3.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lightfm-next"
+version = "1.17.0"
+description = "LightFM recommendation model - Python 3.12+ compatible fork"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [
+    {name = "Lyst Ltd (Maciej Kula)", email = "data@ly.st"},
+    {name = "Mirodimori (Forker)"}
+]
+license = "Apache-2.0"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "numpy>=1.17.0",
+    "scipy>=1.0.0", 
+    "requests",
+    "scikit-learn>=0.20.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/mirodimori/lightfm-next"
+Repository = "https://github.com/mirodimori/lightfm-next"
+"Bug Tracker" = "https://github.com/mirodimori/lightfm-next/issues"
+"Original Project" = "https://github.com/lyst/lightfm"
+"Original Documentation" = "http://lyst.github.io/lightfm/docs/home.html"
+"Original Issues" = "https://github.com/lyst/lightfm/issues"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "Cython>=3.0",
+    "setuptools>=64",
+    "wheel",
+    "build"
+]
+lint = [
+    "flake8",
+    "black"
+]
+docs = [
+    "sphinx",
+    "sphinxcontrib-bibtex",
+    "sphinx_rtd_theme"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]  
+include = ["lightfm*"]
+
+[tool.setuptools.package-data]
+lightfm = ["*.c"]
