@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=64", "wheel", "Cython>=3.0"]
+requires = ["setuptools>=75.0.0,<77.0.0", "wheel", "Cython>=3.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -43,7 +43,7 @@ dev = [
     "pytest>=6.0",
     "pytest-timeout",
     "Cython>=3.0",
-    "setuptools>=64",
+    "setuptools>=75.0.0,<77.0.0",
     "wheel",
     "build",
     "twine",
