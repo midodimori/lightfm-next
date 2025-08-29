@@ -45,7 +45,8 @@ dev = [
     "Cython>=3.0",
     "setuptools>=64",
     "wheel",
-    "build"
+    "build",
+    "twine"
 ]
 lint = [
     "flake8",
