@@ -14,7 +14,7 @@ build:
 
 .PHONY: test
 test:
-	uv run pytest tests/ -v
+	uv run pytest tests/ -v --timeout=300
 
 .PHONY: test-basic
 test-basic:

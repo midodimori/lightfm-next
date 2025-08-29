@@ -41,6 +41,7 @@ Repository = "https://github.com/mirodimori/lightfm-next"
 [project.optional-dependencies]
 dev = [
     "pytest>=6.0",
+    "pytest-timeout",
     "Cython>=3.0",
     "setuptools>=64",
     "wheel",
