@@ -4,12 +4,6 @@ on:
   release:
     types: [published]
   workflow_dispatch:
-    inputs:
-      test_pypi:
-        description: 'Publish to Test PyPI instead of PyPI'
-        required: false
-        default: false
-        type: boolean
 
 jobs:
   build:
@@ -52,12 +46,5 @@ jobs:
           name: dist
           path: dist/
           
-      - name: Publish to Test PyPI
-        if: github.event.inputs.test_pypi == 'true'
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          repository-url: https://test.pypi.org/legacy/
-          
       - name: Publish to PyPI
-        if: github.event.inputs.test_pypi != 'true'
         uses: pypa/gh-action-pypi-publish@release/v1
