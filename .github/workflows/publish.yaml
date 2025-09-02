@@ -43,10 +43,15 @@ jobs:
         uses: pypa/cibuildwheel@v2.21.3
         env:
           CIBW_BUILD: "cp38-* cp39-* cp310-* cp311-* cp312-* cp313-*"
-          CIBW_SKIP: "*-musllinux* pp*"
+          CIBW_SKIP: "pp*"
           CIBW_ARCHS_MACOS: "x86_64 arm64"
-          CIBW_ARCHS_LINUX: "x86_64"
+          CIBW_ARCHS_LINUX: "x86_64 aarch64"
           CIBW_DEPENDENCY_VERSIONS: "latest"
+          CIBW_BUILD_VERBOSITY: 2
+          # For manylinux (RHEL/CentOS based) and musllinux (Alpine based)
+          CIBW_BEFORE_BUILD_LINUX: "yum install -y gcc-c++ || apk add --update build-base libomp-dev || (apt-get update && apt-get install -y build-essential libomp-dev)"
+          CIBW_ENVIRONMENT_LINUX: "CC=gcc CXX=g++ LDFLAGS='-lgomp' CFLAGS='-fopenmp' CXXFLAGS='-fopenmp'"
+          CIBW_ENVIRONMENT_MACOS: "CC=clang CXX=clang++"
           
       - name: Upload wheels
         uses: actions/upload-artifact@v4
