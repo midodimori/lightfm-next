@@ -121,7 +121,7 @@ class Cythonize(Command):
                     extra_link_args=["-fopenmp"],
                 ),
             ],
-            compiler_directives={'language_level' : "3"}
+            compiler_directives={'language_level' : "3", "legacy_implicit_noexcept": True},
         )
 
 
