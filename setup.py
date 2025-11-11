@@ -159,7 +159,7 @@ def read_version():
     return mod["__version__"]
 
 
-use_openmp = not sys.platform.startswith("darwin") and not sys.platform.startswith(
+use_openmp = os.environ.get('USE_OPENMP') or not sys.platform.startswith("darwin") and not sys.platform.startswith(
     "win"
 )
 
