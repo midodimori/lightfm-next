@@ -121,7 +121,7 @@ class Cythonize(Command):
                     extra_link_args=["-fopenmp"],
                 ),
             ],
-            compiler_directives={'language_level' : "3"}
+            compiler_directives={'language_level' : "3", "legacy_implicit_noexcept": True},
         )
 
 
@@ -159,7 +159,7 @@ def read_version():
     return mod["__version__"]
 
 
-use_openmp = not sys.platform.startswith("darwin") and not sys.platform.startswith(
+use_openmp = os.environ.get('USE_OPENMP') or not sys.platform.startswith("darwin") and not sys.platform.startswith(
     "win"
 )
 
